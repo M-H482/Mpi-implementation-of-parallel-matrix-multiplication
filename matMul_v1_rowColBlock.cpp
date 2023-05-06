@@ -64,7 +64,7 @@ void schedule(int rank,
     for (int i = 0; i < nprcs; i++) {
 
         int l = (rank + i) % nprcs;
-        matMul(Mr, P, Nc, P, Nc, N, A_sub, B_sub, C_sub + l * Nc);
+        matMul(Mr, P, Nc, A_sub, P, B_sub, Nc, C_sub + l * Nc, Nc);
 
         if (i < nprcs - 1) {
             MPI_Sendrecv_replace(

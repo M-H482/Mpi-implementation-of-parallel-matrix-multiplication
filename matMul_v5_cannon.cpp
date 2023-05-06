@@ -69,7 +69,7 @@ void schedule(int rank, int size, int P, int N, int Mr, int Pr, int Nc, float* A
             MPI_Isend(A_sub, Mr * Pr, MPI_FLOAT,
                 row * size + cp1, 777, MPI_COMM_WORLD, &req);
 
-            matMul(Mr, Pr, Nc, Pr, Nc, Nc, A_sub, B_sub, C_sub);
+            matMul(Mr, Pr, Nc, A_sub, Pr, B_sub, Nc, C_sub, Nc);
 
             MPI_Wait(&req, &sta);
         } else {
@@ -80,7 +80,7 @@ void schedule(int rank, int size, int P, int N, int Mr, int Pr, int Nc, float* A
                 MPI_Isend(A_tmp, Mr * Pr, MPI_FLOAT,
                     row * size + cp1, 777, MPI_COMM_WORLD, &req);
 
-            matMul(Mr, Pr, Nc, Pr, Nc, Nc, A_tmp, B_sub, C_sub);
+            matMul(Mr, Pr, Nc, A_tmp, Pr, B_sub, Nc, C_sub, Nc);
 
             if (cp1 != l)
                 MPI_Wait(&req, &sta);

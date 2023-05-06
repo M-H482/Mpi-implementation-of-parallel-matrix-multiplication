@@ -31,7 +31,7 @@ void schedule(int rank, int nprcs, int P, int N, int Pr, int Mr, float* A_sub, f
     for (int i = 0; i < nprcs; i++) {
 
         int l = (i + rank) % nprcs;
-        matMul(Mr, Pr, N, P, N, N, A_sub + l * Pr, B_sub, C_sub);
+        matMul(Mr, Pr, N, A_sub + l * Pr, P, B_sub, N, C_sub, N);
 
         if (i < nprcs - 1) {
             MPI_Sendrecv_replace(B_sub, Pr * N, MPI_FLOAT, dest, 777, src, 777, MPI_COMM_WORLD, &status);

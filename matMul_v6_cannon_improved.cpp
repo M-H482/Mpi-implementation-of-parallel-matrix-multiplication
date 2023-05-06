@@ -95,7 +95,7 @@ void schedule(int rank, int size, int P, int N, int Mr, int Pr, int Nc, float* A
 
     MPI_Status sta;
     for (int i = 0; i < size; i++) {
-        matMul(Mr, Pr, Nc, Pr, Nc, Nc, A_sub, B_sub, C_sub);
+        matMul(Mr, Pr, Nc, A_sub, Pr, B_sub, Nc, C_sub, Nc);
 
         if (i < size - 1) {
             MPI_Sendrecv_replace(A_sub, Mr * Pr, MPI_FLOAT,

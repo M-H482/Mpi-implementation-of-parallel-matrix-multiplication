@@ -7,12 +7,12 @@
 void matMul(int m, // row num of A
     int p, // col num of A
     int n, // col num of B
-    int lda, // leading dimension size of A
-    int ldb, // leading dimension size of B
-    int ldc, // leading dimension size of C
     float* A_sub,
+    int lda, // leading dimension size of A
     float* B_sub,
-    float* C_sub)
+    int ldb, // leading dimension size of B
+    float* C_sub,
+    int ldc) // leading dimension size of C
 {
     float* pC = C_sub;
 

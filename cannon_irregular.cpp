@@ -296,6 +296,9 @@ int main(int argc, char** argv)
     delete[] A;
     delete[] B;
     delete[] C;
+    delete[] A_tmp;
+    delete[] B_tmp;
+
     MPI_Finalize();
     return 0;
 }
